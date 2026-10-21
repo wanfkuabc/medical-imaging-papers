@@ -1,821 +1,400 @@
 # Medical Imaging Papers Collection
 
-> 综合整理医学图像分割、医学点云/三维重建、医学图像检测/定位、医学图像配准方向的论文。
+> **更新日期：2026-10-21** ｜ **时间范围：2020–2026** ｜ **收录标准：仅 CCF A 类正式会议主会论文**
 >
+> 论文覆盖医学图像分割、医学点云/三维重建、医学图像检测/定位以及医学图像配准。
 
----
+## 筛选规则与使用说明
+
+- **会议**：CVPR、ICCV、AAAI、NeurIPS（均按 CCF A 类会议口径）。
+- **任务概念区别**：半监督 ≠ 弱监督 ≠ 完全无监督；医学图像配准中的“无监督”也不等于无监督医学分割。
+- **主题相关性**：三维重建中部分方法为医学适用的通用几何方法，已显式标注；深度估计作为上游技术单列，不伪称完整重建。
 
 ## 目录
 
 - [Part I. 医学图像分割与医学点云/三维重建](#part-i-医学图像分割与医学点云三维重建)
+  - [1. 半监督医学图像分割](#1-半监督医学图像分割)
+  - [2. 弱监督医学图像分割](#2-弱监督医学图像分割)
+  - [3. 医学分割基础模型与结构创新](#3-医学分割基础模型与结构创新)
+  - [4. 医学点云与三维重建](#4-医学点云与三维重建)
 - [Part II. 医学图像检测/定位与医学图像配准](#part-ii-医学图像检测定位与医学图像配准)
+  - [5. 医学图像检测/定位](#5-医学图像检测定位)
+  - [6. 医学图像配准](#6-医学图像配准)
+- [推荐阅读顺序](#推荐阅读顺序)
+- [从旧版移除的非 A 类作品](#从旧版移除的非-a-类作品)
 
 ---
 
 # Part I. 医学图像分割与医学点云/三维重建
 
-> 本 厂库 汇总了医学图像分割、医学点云/三维重建方向的代表性论文，并给出论文主页、DOI、PubMed、arXiv 或会议官方页面地址。  
-> 时间范围：2020–2026。
-
----
-
-## 1. 医学图像分割（Medical Image Segmentation）
-
-### 2020
-
-1. **UNet 3+: A Full-Scale Connected UNet for Medical Image Segmentation**  
-   Paper: https://doi.org/10.1109/ICASSP40776.2020.9053405
-
-2. **PraNet: Parallel Reverse Attention Network for Polyp Segmentation**  
-   Paper: https://arxiv.org/abs/2006.11392
-
-3. **Inf-Net: Automatic COVID-19 Lung Infection Segmentation from CT Images**  
-   Paper: https://pubmed.ncbi.nlm.nih.gov/32730213/
-
-4. **nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation**  
-   Paper: https://doi.org/10.1038/s41592-020-01008-z
-
-5. **KiU-Net: Overcomplete Convolutional Architectures for Biomedical Image and Volumetric Segmentation**  
-   Paper: https://arxiv.org/abs/2010.01663
-
----
-
-### 2021
-
-6. **TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation**  
-   Paper: https://arxiv.org/abs/2102.04306
-
-7. **Medical Transformer: Gated Axial-Attention for Medical Image Segmentation**  
-   Paper: https://miccai2021.org/openaccess/paperlinks/2021/09/01/304-Paper0116.html
-
-8. **CoTr: Efficiently Bridging CNN and Transformer for 3D Medical Image Segmentation**  
-   Paper: https://miccai2021.org/openaccess/paperlinks/2021/09/01/118-Paper0537.html
-
-9. **nnFormer: Interleaved Transformer for Volumetric Segmentation**  
-   Paper: https://arxiv.org/abs/2109.03201
-
----
-
-### 2022
-
-10. **Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation**  
-    Paper: https://mlanthology.org/eccvw/2022/cao2022eccvw-swinunet/
-
-11. **UNETR: Transformers for 3D Medical Image Segmentation**  
-    Paper: https://openaccess.thecvf.com/content/WACV2022/html/Hatamizadeh_UNETR_Transformers_for_3D_Medical_Image_Segmentation_WACV_2022_paper.html
-
-12. **Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images**  
-    Paper: https://arxiv.org/abs/2201.01266
-
-13. **UCTransNet: Rethinking the Skip Connections in U-Net from a Channel-Wise Perspective with Transformer**  
-    Paper: https://ojs.aaai.org/index.php/AAAI/article/view/20144
-
----
+## 1. 半监督医学图像分割
 
 ### 2023
 
-14. **MISSFormer: An Effective Transformer for 2D Medical Image Segmentation**  
-    Paper: https://pubmed.ncbi.nlm.nih.gov/37015444/
+**1. Bidirectional Copy-Paste for Semi-Supervised Medical Image Segmentation (BCP)**  
+- **会议**：CVPR 2023 · **CCF A 类主会**  
+- **方向**：半监督 / Teacher–Student  
+- **核心内容**：Mean Teacher + 双向 Copy-Paste，缓解有标签/无标签图像间的数据分布差异；代表性入门论文。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2023/papers/Bai_Bidirectional_Copy-Paste_for_Semi-Supervised_Medical_Image_Segmentation_CVPR_2023_paper.pdf) · [Code](https://github.com/DeepMed-Lab-ECNU/BCP)  
 
-15. **Segment Anything Model for Medical Image Analysis: An Experimental Study**  
-    Paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC10528428/
+**2. CauSSL: Causality-inspired Semi-supervised Learning for Medical Image Segmentation**  
+- **会议**：ICCV 2023 · **CCF A 类主会**  
+- **方向**：半监督 / 因果学习  
+- **核心内容**：因果启发的双分支协同训练，借助 min-max 优化增强分支独立性。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/ICCV2023/papers/Miao_CauSSL_Causality-inspired_Semi-supervised_Learning_for_Medical_Image_Segmentation_ICCV_2023_paper.pdf) · [Code](https://github.com/JuzhengMiao/CauSSL)  
 
-16. **SAM-Med2D**  
-    Paper: https://arxiv.org/abs/2308.16184
+**3. MagicNet: Semi-Supervised Multi-Organ Segmentation via Magic-Cube Partition and Recovery**  
+- **会议**：CVPR 2023 · **CCF A 类主会**  
+- **方向**：半监督 / 三维器官  
+- **核心内容**：将 3D CT 划分为立方体，在有/无标签样本间进行分块混合与恢复，并改进多器官伪标签。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2023/papers/Chen_MagicNet_Semi-Supervised_Multi-Organ_Segmentation_via_Magic-Cube_Partition_and_Recovery_CVPR_2023_paper.pdf) · [Code](https://github.com/DeepMed-Lab-ECNU/MagicNet)  
 
----
+**4. XNet: Wavelet-Based Low and High Frequency Fusion Networks for Fully- and Semi-Supervised Semantic Segmentation of Biomedical Images**  
+- **会议**：ICCV 2023 · **CCF A 类主会**  
+- **方向**：全监督 + 半监督 / 频域  
+- **核心内容**：以小波变换融合低频/高频表征，覆盖全监督与半监督、2D 与 3D 医学分割。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/ICCV2023/papers/Zhou_XNet_Wavelet-Based_Low_and_High_Frequency_Fusion_Networks_for_Fully-_ICCV_2023_paper.pdf) · [Code](https://github.com/Yanfeng-Zhou/XNet)  
 
 ### 2024
 
-17. **Segment Anything in Medical Images (MedSAM)**  
-    Paper: https://doi.org/10.1038/s41467-024-44824-z
+**5. Adaptive Bidirectional Displacement for Semi-Supervised Medical Image Segmentation (ABD)**  
+- **会议**：CVPR 2024 · **CCF A 类主会**  
+- **方向**：半监督 / 置信度  
+- **核心内容**：按预测置信度进行双向 patch 置换，并针对困难区域设计反向置信度增强。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2024/papers/Chi_Adaptive_Bidirectional_Displacement_for_Semi-Supervised_Medical_Image_Segmentation_CVPR_2024_paper.pdf) · [Code](https://github.com/chy-upc/ABD)  
 
-18. **SegVol: Universal and Interactive Volumetric Medical Image Segmentation**  
-    Paper: https://papers.nips.cc/paper_files/paper/2024/hash/c7c7cf10082e454b9662a686ce6f1b6f-Abstract-Conference.html
-
-19. **Segment Anything Model for Medical Images?**  
-    Paper: https://www.sciencedirect.com/science/article/pii/S1361841523003213
-
-20. **SegMamba: Long-range Sequential Modeling Mamba for 3D Medical Image Segmentation**  
-    Paper: https://papers.miccai.org/miccai-2024/676-Paper0663.html
-
-21. **U-Mamba: Enhancing Long-range Dependency for Biomedical Image Segmentation**  
-    Paper: https://arxiv.org/abs/2401.04722
-
-22. **LightM-UNet: Mamba Assists in Lightweight UNet for Medical Image Segmentation**  
-    Paper: https://arxiv.org/abs/2403.05246
-
-23. **FastSAM3D: An Efficient Segment Anything Model for 3D Volumetric Medical Images**  
-    Paper: https://papers.miccai.org/miccai-2024/312-Paper2456.html
-
-24. **Tri-Plane Mamba: Efficiently Adapting Segment Anything Model for 3D Medical Images**  
-    Paper: https://papers.miccai.org/miccai-2024/804-Paper2184.html
-
-25. **nnU-Net Revisited: A Call for Rigorous Validation in 3D Medical Image Segmentation**  
-    Paper: https://papers.miccai.org/miccai-2024/562-Paper2847.html
-
----
+**6. Constructing and Exploring Intermediate Domains in Mixed Domain Semi-supervised Medical Image Segmentation (MiDSS)**  
+- **会议**：CVPR 2024 · **CCF A 类主会**  
+- **方向**：跨域半监督  
+- **核心内容**：通过中间域构建和伪标签指导，处理少量标注与跨中心域偏移同时存在的情况。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2024/papers/Ma_Constructing_and_Exploring_Intermediate_Domains_in_Mixed_Domain_Semi-supervised_Medical_CVPR_2024_paper.pdf) · [Code](https://github.com/MQinghe/MiDSS)  
 
 ### 2025
 
-26. **HybridMamba: A Dual-domain Mamba for 3D Medical Image Segmentation**  
-    Paper: https://papers.miccai.org/miccai-2025/0426-Paper2815.html
+**7. Adaptive Learning of High-Value Regions for Semi-Supervised Medical Image Segmentation (ALHVR)**  
+- **会议**：ICCV 2025 · **CCF A 类主会**  
+- **方向**：半监督 / 高价值区域  
+- **核心内容**：按双分支预测稳定性与可靠性划分区域，对高价值区域设计差异化学习策略。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/ICCV2025/papers/Lei_Adaptive_Learning_of_High-Value_Regions_for_Semi-Supervised_Medical_Image_Segmentation_ICCV_2025_paper.pdf) · [Code](https://github.com/ziziyao/ALHVR)  
 
-27. **From Generalist to Specialist: Distilling a Mixture of Foundation Models for Domain-specific Medical Image Segmentation**  
-    Paper: https://papers.miccai.org/miccai-2025/0355-Paper2167.html
+**8. Annotation Ambiguity Aware Semi-Supervised Medical Image Segmentation (AmbiSSL)**  
+- **会议**：CVPR 2025 · **CCF A 类主会**  
+- **方向**：半监督 / 多标注者 / Latent  
+- **核心内容**：通过随机剪枝解码器生成多样化伪标签，并学习标注歧义对应的潜在分布。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2025/papers/Kumari_Annotation_Ambiguity_Aware_Semi-Supervised_Medical_Image_Segmentation_CVPR_2025_paper.pdf)  
 
-28. **MAMBA-Based Weakly Supervised Medical Image Segmentation with Cross-Modal Textual Information**  
-    Paper: https://papers.miccai.org/miccai-2025/0523-Paper0648.html
-
----
+**9. DyCON: Dynamic Uncertainty-aware Consistency and Contrastive Learning for Semi-supervised Medical Image Segmentation**  
+- **会议**：CVPR 2025 · **CCF A 类主会**  
+- **方向**：半监督 / 不确定性  
+- **核心内容**：结合不确定性感知一致性损失与焦点熵感知对比学习，改善 3D 病灶分割的困难区域与类别不平衡。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2025/papers/Assefa_DyCON_Dynamic_Uncertainty-aware_Consistency_and_Contrastive_Learning_for_Semi-supervised_Medical_CVPR_2025_paper.pdf) · [Code](https://github.com/CVML-KU/DyCON)  
 
 ### 2026
 
-29. **SegMoTE: Token-Level Mixture of Experts for Medical Image Segmentation**  
-    Paper: https://openaccess.thecvf.com/content/CVPR2026/html/Lu_SegMoTE_Token-Level_Mixture_of_Experts_for_Medical_Image_Segmentation_CVPR_2026_paper.html
+**10. Divide, Conquer, and Aggregate: Asymmetric Experts for Class-Imbalanced Semi-Supervised Medical Image Segmentation (DCA)**  
+- **会议**：CVPR 2026 · **CCF A 类主会**  
+- **方向**：半监督 / 类别不平衡  
+- **核心内容**：共享编码器与非对称专家解码器分工处理头部/中部/尾部类别，通过 logit 拼接与聚合提升多器官分割。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2026/papers/Liu_Divide_Conquer_and_Aggregate_Asymmetric_Experts_for_Class-Imbalanced_Semi-Supervised_Medical_CVPR_2026_paper.pdf) · [Code](https://github.com/PHPJava666/DCA)  
 
-30. **Annotation-efficient medical image segmentation via cross-latent graphs and vector-quantized memory**  
-    Paper: https://www.sciencedirect.com/science/article/pii/S1361841526002148
-
----
-
-## 2. 医学点云 / 三维重建（Medical Point Cloud & 3D Reconstruction）
-
-### 2020
-
-1. **A morphing-Based 3D point cloud reconstruction framework for medical image processing**  
-   Paper: https://www.sciencedirect.com/science/article/pii/S0169260719321479
+**11. SemiGDA: Generative Dual-distribution Alignment for Semi-Supervised Medical Image Segmentation**  
+- **会议**：CVPR 2026 · **CCF A 类主会**  
+- **方向**：半监督 / 双分布 Latent 对齐  
+- **核心内容**：对齐图像与分割掩码的潜在特征分布，利用一致性驱动的跳跃适配器强化跨分支语义。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2026/papers/Huang_SemiGDA_Generative_Dual-distribution_Alignment_for_Semi-Supervised_Medical_Image_Segmentation_CVPR_2026_paper.pdf) · [Code](https://github.com/taozh2017/SemiGDA)  
 
 ---
 
-### 2021
+## 2. 弱监督医学图像分割
 
-2. **Recovering dense 3D point clouds from single endoscopic image**  
-   Paper: https://www.sciencedirect.com/science/article/pii/S0169260721001528
+### 2026
 
-3. **A Deep-Learning Approach for Direct Whole-Heart Mesh Reconstruction (MeshDeformNet)**  
-   Paper: https://www.sciencedirect.com/science/article/pii/S136184152100267X  
-   PubMed: https://pubmed.ncbi.nlm.nih.gov/34543913/
+**1. Rethinking Box Supervision: Bias-Free Weakly Supervised Medical Segmentation (WeakMed)**  
+- **会议**：CVPR 2026 · **CCF A 类主会**  
+- **方向**：框监督 / 弱监督  
+- **核心内容**：只用边界框作为训练监督；Mask-to-Box 变换和尺度一致性损失减轻框形状偏置，不依赖 GT 像素级 Mask。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2026/papers/Wei_Rethinking_Box_Supervision_Bias-Free_Weakly_Supervised_Medical_Segmentation_CVPR_2026_paper.pdf)  
 
 ---
+
+**关于完全无监督医学分割**：本版未将缺少确认的完全无监督分割论文硬塞进 A 类清单；上面的 BCP、ABD、WeakMed 等均使用不同程度的真实标注。
+
+---
+
+## 3. 医学分割基础模型与结构创新
 
 ### 2022
 
-4. **MCSI-Net: Automatic 3D+t Four-Chamber CMR Quantification**  
-   Paper: https://pubmed.ncbi.nlm.nih.gov/35665663/
-
-5. **Automated 3D Whole-Heart Mesh Reconstruction From 2D Cine MR Slices Using Statistical Shape Model**  
-   Paper: https://pubmed.ncbi.nlm.nih.gov/36086304/  
-   DOI: https://doi.org/10.1109/EMBC48229.2022.9871327
-
-6. **Reconstructing 3D Cardiac Anatomies from Misaligned Multi-View Magnetic Resonance Images with Mesh Deformation U-Nets**  
-   Paper: https://proceedings.mlr.press/v194/beetz22a.html
-
-7. **Point2Mesh-Net: Combining Point Cloud and Mesh-Based Deep Learning for Cardiac Shape Reconstruction**  
-   DOI: https://doi.org/10.1007/978-3-031-23443-9_26  
-   DBLP: https://dblp.org/rec/conf/stacom-ws/BeetzBG22
-
----
+**1. UCTransNet: Rethinking the Skip Connections in U-Net from a Channel-Wise Perspective with Transformer**  
+- **会议**：AAAI 2022 · **CCF A 类主会**  
+- **方向**：全监督 / 模型结构  
+- **核心内容**：Channel Transformer (CCT + CCA) 改进 U-Net 跳跃连接，融合不同尺度通道语义。  
+- **资源**：[**PDF 直达**](https://ojs.aaai.org/index.php/AAAI/article/view/20144/19903) · [Code](https://github.com/McGregorWwww/UCTransNet)  
 
 ### 2023
 
-8. **Multi-class Point Cloud Completion Networks for 3D Cardiac Anatomy Reconstruction from Cine MRI**  
-   Paper: https://www.sciencedirect.com/science/article/pii/S1361841523002359  
-   arXiv: https://arxiv.org/abs/2307.08535
-
-9. **Learning Whole Heart Mesh Generation From Patient Images for Computational Simulations (HeartDeformNet)**  
-   PubMed: https://pubmed.ncbi.nlm.nih.gov/36327186/  
-   DOI: https://doi.org/10.1109/TMI.2022.3219284
-
-10. **3D Coronary Vessel Reconstruction from Bi-Plane Angiography using Graph Convolutional Networks (3DAngioNet)**  
-    arXiv: https://arxiv.org/abs/2302.14795  
-    PDF: https://webspace.eecs.qmul.ac.uk/g.slabaugh/publications/BransbyISBI2023.pdf
-
----
+**2. Devil Is in the Queries: Advancing Mask Transformers for Real-World Medical Image Segmentation and Out-of-Distribution Localization**  
+- **会议**：CVPR 2023 · **CCF A 类主会**  
+- **方向**：Mask Transformer / OOD  
+- **核心内容**：通过 object queries 和 query-distribution loss 同时改进病灶分割与分布外病灶定位。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2023/papers/Yuan_Devil_Is_in_the_Queries_Advancing_Mask_Transformers_for_Real-World_CVPR_2023_paper.pdf)  
 
 ### 2024
 
-11. **DeepSSM: A blueprint for image-to-shape deep learning models**  
-    Paper: https://www.sciencedirect.com/science/article/abs/pii/S1361841523002943
-
-12. **PX2Tooth: Reconstructing the 3D Point Cloud Teeth from a Single Panoramic X-ray**  
-    Paper: https://papers.miccai.org/miccai-2024/631-Paper1637.html
-
-13. **Topological 3D Reconstruction of Multiple Anatomical Structures from Volumetric Medical Data**  
-    Paper: https://www.sciencedirect.com/science/article/pii/S0097849324000827
-
-14. **A data-driven approach for the partial reconstruction of individual human molar teeth using generative deep learning**  
-    Paper: https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1339193/full
-
----
-
-### 2025
-
-15. **Automatic Point Cloud Patching of Intraoral Three-Dimensional Scanning Based on Deep Learning**  
-    Paper: https://pubmed.ncbi.nlm.nih.gov/40684681/
-
-16. **Memory-Guided Point Cloud Completion for Dental Reconstruction**  
-    Paper: https://arxiv.org/abs/2512.03598
-
----
+**3. SegVol: Universal and Interactive Volumetric Medical Image Segmentation**  
+- **会议**：NeurIPS 2024 · **CCF A 类主会**  
+- **方向**：3D 基础模型 / 提示式分割  
+- **核心内容**：面向 3D CT 的通用交互分割基础模型；使用无标签和有标签 CT 预训练，并支持语义与空间提示。  
+- **资源**：[**PDF 直达**](https://proceedings.neurips.cc/paper_files/paper/2024/file/c7c7cf10082e454b9662a686ce6f1b6f-Paper-Conference.pdf) · [Code](https://github.com/BAAI-DCAI/SegVol)  
+- **说明**：使用无标注数据参与训练，但不是严格意义上“无监督分割”工作。  
 
 ### 2026
 
-17. **Real-Time Novel-View Freehand Ultrasound Imaging via Point-Cloud Rendering and Diffusion-Bridge Completion**  
-    Paper: https://proceedings.mlr.press/v315/shi26b.html
-
-18. **Endo-PairGS: Pair Priors for Dynamic Endoscopic Scene Reconstruction**  
-    Paper: https://pubmed.ncbi.nlm.nih.gov/42165915/
-
-19. **Endo-E2E-GS: End-to-end 3D Reconstruction of Endoscopic Scenes using Gaussian Splatting**  
-    Paper: https://www.sciencedirect.com/science/article/abs/pii/S0141938226000168
+**4. SegMoTE: Token-Level Mixture of Experts for Medical Image Segmentation**  
+- **会议**：CVPR 2026 · **CCF A 类主会**  
+- **方向**：MoE / SAM 适配  
+- **核心内容**：通过 token 级专家路由与渐进提示 token 化高效适配 SAM，提高跨模态的自动与交互式分割能力。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_SegMoTE_Token-Level_Mixture_of_Experts_for_Medical_Image_Segmentation_CVPR_2026_paper.pdf)  
 
 ---
 
-## 3. 推荐阅读顺序
+## 4. 医学点云与三维重建
 
-### 医学图像分割
+### 2022
 
-```text
-nnU-Net
-  ↓
-TransUNet / UNETR / Swin UNETR
-  ↓
-MedSAM / SAM-Med2D
-  ↓
-SegVol / FastSAM3D
-  ↓
-U-Mamba / SegMamba
-  ↓
-Text-guided / Weakly-supervised / MoE Medical Segmentation
-```
+**1. SMPL-A: Modeling Person-Specific Deformable Anatomy**  
+- **会议**：CVPR 2022 · **CCF A 类主会**  
+- **方向**：解剖点云 / 形变建模  
+- **核心内容**：利用点云自编码器与人体姿态条件建模特定患者器官变形，适用于医学解剖几何重建与估计。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_SMPL-A_Modeling_Person-Specific_Deformable_Anatomy_CVPR_2022_paper.pdf)  
 
-### 医学点云 / 三维重建
+### 2025
 
-```text
-MeshDeformNet
-  ↓
-Mesh Deformation U-Net
-  ↓
-Point2Mesh-Net
-  ↓
-Point Cloud Completion for Cardiac Anatomy
-  ↓
-PX2Tooth / Dental Point Cloud Completion
-  ↓
-3DAngioNet
-  ↓
-Endoscopic 3D Gaussian Splatting
-```
+**2. CrossSDF: 3D Reconstruction of Thin Structures From Cross-Sections**  
+- **会议**：CVPR 2025 · **CCF A 类主会**  
+- **方向**：医学相关 3D 表面重建  
+- **核心内容**：从少量二维截面恢复三维 SDF；面向细薄结构和血管类拓扑保真，论文讨论医疗成像应用。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2025/papers/Walker_CrossSDF_3D_Reconstruction_of_Thin_Structures_From_Cross-Sections_CVPR_2025_paper.pdf)  
+- **说明**：通用三维重建方法，包含医学应用背景；不属于仅在医疗数据上提出的方法。  
 
 ---
 
+### 相关上游技术：医学内镜/眼科深度估计（不是完整 3D 重建）
+
+- **Depth Any Endoscopy: Towards Self-Supervised Generalizable Depth Estimation in Monocular Endoscopy** — CVPR 2026（CCF A）；单目内镜自监督深度估计；作为三维重建前端深度先验使用，不等同于完整三维表面重建。 [PDF](https://openaccess.thecvf.com/content/CVPR2026/papers/Shao_Depth_Any_Endoscopy_Towards_Self-Supervised_Generalizable_Depth_Estimation_in_Monocular_CVPR_2026_paper.pdf)
+- **Real2Sim2Real: RetinalDepth-64K for Depth Estimation in Posterior Segment Ophthalmic Surgery** — CVPR 2026（CCF A）；眼科术中深度估计基准和方法，为眼底三维重建及导航提供基础。 [PDF](https://openaccess.thecvf.com/content/CVPR2026/papers/Dong_Real2Sim2Real_RetinalDepth-64K_for_Depth_Estimation_in_Posterior_Segment_Ophthalmic_Surgery_CVPR_2026_paper.pdf)
+
+**筛选说明**：旧版的 MeshDeformNet（期刊）、PX2Tooth（MICCAI）、Point2Mesh-Net（Workshop）、3DAngioNet（ISBI）、以及 MIDL 2026 超声点云方法均不符合“只要 CCF A 主会”的限制，故不进入本节正式清单。
 
 ---
 
 # Part II. 医学图像检测/定位与医学图像配准
 
-> **方向：**
-> 1. 医学图像检测 / 定位（Medical Image Detection / Localization）
-> 2. 医学图像配准（Medical Image Registration）
->
-> **时间范围：** 2020–2024  
-> **筛选口径：**
-> - 期刊：优先筛选近年通常处于 SCI/JCR Q1–Q2、或国内科研评价中常作为高水平医学影像/图像处理期刊使用的论文；
-> - 会议：严格按 CCF B 及以上筛选，主要包括 CVPR、ICCV、AAAI（CCF A）以及 ECCV（CCF B）；
-> - MICCAI 虽然是医学图像计算领域的顶级专业会议，但不属于 CCF A/B 主目录，因此本 README 的“严格 B 类以上”主表中不纳入 MICCAI。
->
-> **注意：** SCI/JCR/中科院分区会随年份、学科类别和学校认定口径变化。用于毕业、奖学金、职称或项目申报时，请以所在学校采用的**对应年份分区表**再次核验。
->
-> 本 README 主要收录与 **lesion/object detection、landmark localization、anomaly localization、medical image registration** 直接相关的代表性论文。  
-> “检测 / 定位”部分包含病灶检测、肿块检测、解剖标志点定位及医学异常区域定位。
+## 5. 医学图像检测/定位
+
+### 2020
+
+**1. Cross-View Correspondence Reasoning Based on Bipartite Graph Convolutional Network for Mammogram Mass Detection**  
+- **会议**：CVPR 2020 · **CCF A 类主会**  
+- **方向**：乳腺肿块 / 双视图推理  
+- **核心内容**：双视角乳腺 X 光的二分图卷积对应关系推理与肿块检测。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content_CVPR_2020/papers/Liu_Cross-View_Correspondence_Reasoning_Based_on_Bipartite_Graph_Convolutional_Network_for_CVPR_2020_paper.pdf)  
+
+**2. FocalMix: Semi-Supervised Learning for 3D Medical Image Detection**  
+- **会议**：CVPR 2020 · **CCF A 类主会**  
+- **方向**：半监督 3D 检测  
+- **核心内容**：3D CT 肺结节半监督检测，结合软标签与 focal 风格目标函数。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_FocalMix_Semi-Supervised_Learning_for_3D_Medical_Image_Detection_CVPR_2020_paper.pdf)  
+
+### 2021
+
+**3. Leveraging Large-Scale Weakly Labeled Data for Semi-Supervised Mass Detection in Mammograms**  
+- **会议**：CVPR 2021 · **CCF A 类主会**  
+- **方向**：弱标签 / 半监督检测  
+- **核心内容**：融合弱标注数据、样本筛选与软标签损失，提高乳腺钼靶肿块检测。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2021/papers/Tang_Leveraging_Large-Scale_Weakly_Labeled_Data_for_Semi-Supervised_Mass_Detection_in_CVPR_2021_paper.pdf)  
+
+### 2022
+
+**4. Which Images To Label for Few-Shot Medical Landmark Detection?**  
+- **会议**：CVPR 2022 · **CCF A 类主会**  
+- **方向**：少样本 Landmark  
+- **核心内容**：自监督表征 + Keypoint Proposal + Representative Score，筛选最值得标注的少样本模板图像。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2022/papers/Quan_Which_Images_To_Label_for_Few-Shot_Medical_Landmark_Detection_CVPR_2022_paper.pdf)  
+
+### 2023
+
+**5. Devil Is in the Queries: Advancing Mask Transformers for Real-World Medical Image Segmentation and Out-of-Distribution Localization**  
+- **会议**：CVPR 2023 · **CCF A 类主会**  
+- **方向**：OOD 病灶定位  
+- **核心内容**：采用查询分布和 MaxQuery 进行医学病灶的分割与 OOD 定位；在分割与定位两个章节交叉引用。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2023/papers/Yuan_Devil_Is_in_the_Queries_Advancing_Mask_Transformers_for_Real-World_CVPR_2023_paper.pdf)  
+- **说明**：与分割章节为同一论文，不重复计入唯一论文数。  
+
+### 2024
+
+**6. Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images**  
+- **会议**：CVPR 2024 · **CCF A 类主会**  
+- **方向**：医学 VLM / 异常定位  
+- **核心内容**：使用 CLIP 多层视觉特征适配和像素级视觉语言对齐，实现医学异常定位/异常分割。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_Adapting_Visual-Language_Models_for_Generalizable_Anomaly_Detection_in_Medical_Images_CVPR_2024_paper.pdf) · [Code](https://github.com/MediaBrain-SJTU/MVFA-AD)  
 
 ---
 
-# 1. 医学图像检测 / 定位
+## 6. 医学图像配准
 
-## 2020
+### 2020
 
-### 1. Unsupervised lesion detection via image restoration with a normative prior
-- **Venue:** Medical Image Analysis, 2020
-- **方向:** 无监督病灶检测 / 异常定位
-- **Paper:** https://doi.org/10.1016/j.media.2020.101713
+**1. DeepFLASH: An Efficient Network for Learning-Based Medical Image Registration**  
+- **会议**：CVPR 2020 · **CCF A 类主会**  
+- **方向**：低维频域 / 高效配准  
+- **核心内容**：在低维带限空间学习和约束配准变换，减少计算与显存开销。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_DeepFLASH_An_Efficient_Network_for_Learning-Based_Medical_Image_Registration_CVPR_2020_paper.pdf)  
 
-### 2. Weakly supervised object detection with 2D and 3D regression neural networks
-- **Venue:** Medical Image Analysis, 2020
-- **方向:** 弱监督医学目标检测
-- **Paper:** https://doi.org/10.1016/j.media.2020.101767
+**2. Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks**  
+- **会议**：CVPR 2020 · **CCF A 类主会**  
+- **方向**：无监督 / 可微同胚  
+- **核心内容**：学习前向/反向形变映射的对称可微同胚配准，强调拓扑与可逆性。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content_CVPR_2020/papers/Mok_Fast_Symmetric_Diffeomorphic_Image_Registration_with_Convolutional_Neural_Networks_CVPR_2020_paper.pdf)  
 
-### 3. FocalMix: Semi-Supervised Learning for 3D Medical Image Detection
-- **Venue:** CVPR 2020 — CCF A
-- **方向:** 3D 医学图像检测 / 半监督学习
-- **Paper:** https://openaccess.thecvf.com/content_CVPR_2020/html/Wang_FocalMix_Semi-Supervised_Learning_for_3D_Medical_Image_Detection_CVPR_2020_paper.html
+### 2021
 
-### 4. Cross-View Correspondence Reasoning Based on Bipartite Graph Convolutional Network for Mammogram Mass Detection
-- **Venue:** CVPR 2020 — CCF A
-- **方向:** 乳腺 X-ray 肿块检测
-- **Paper:** https://openaccess.thecvf.com/content_CVPR_2020/html/Liu_Cross-View_Correspondence_Reasoning_Based_on_Bipartite_Graph_Convolutional_Network_for_CVPR_2020_paper.html
+**3. Generative Adversarial Registration for Improved Conditional Deformable Templates**  
+- **会议**：ICCV 2021 · **CCF A 类主会**  
+- **方向**：GAN / 模板配准  
+- **核心内容**：借助对抗目标生成条件形变模板，改善医学群体影像配准与模板质量。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/ICCV2021/papers/Dey_Generative_Adversarial_Registration_for_Improved_Conditional_Deformable_Templates_ICCV_2021_paper.pdf)  
 
----
+### 2022
 
-## 2021
+**4. Affine Medical Image Registration With Coarse-To-Fine Vision Transformer**  
+- **会议**：CVPR 2022 · **CCF A 类主会**  
+- **方向**：ViT / 仿射配准  
+- **核心内容**：C2FViT 对 3D 医学图像进行粗到细仿射配准。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2022/papers/Mok_Affine_Medical_Image_Registration_With_Coarse-To-Fine_Vision_Transformer_CVPR_2022_paper.pdf) · [Code](https://github.com/cwmok/C2FViT)  
 
-### 5. Learning From Multiple Datasets With Heterogeneous and Partial Labels for Universal Lesion Detection in CT
-- **Venue:** IEEE Transactions on Medical Imaging, 2021
-- **方向:** CT 通用病灶检测 / 多数据集学习
-- **Paper:** https://doi.org/10.1109/TMI.2020.3047598
+**5. Aladdin: Joint Atlas Building and Diffeomorphic Registration Learning With Pairwise Alignment**  
+- **会议**：CVPR 2022 · **CCF A 类主会**  
+- **方向**：Atlas / 可微同胚  
+- **核心内容**：联合 Atlas 构建与可微同胚配准，采用成对对齐改善解剖结构一致性。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2022/papers/Ding_Aladdin_Joint_Atlas_Building_and_Diffeomorphic_Registration_Learning_With_Pairwise_CVPR_2022_paper.pdf)  
 
-### 6. Leveraging Large-Scale Weakly Labeled Data for Semi-Supervised Mass Detection in Mammograms
-- **Venue:** CVPR 2021 — CCF A
-- **方向:** 乳腺钼靶肿块检测 / 半监督
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2021/html/Tang_Leveraging_Large-Scale_Weakly_Labeled_Data_for_Semi-Supervised_Mass_Detection_in_CVPR_2021_paper.html
+### 2023
 
-### 7. Simultaneous Denoising and Localization Network for Photoacoustic Target Localization
-- **Venue:** IEEE Transactions on Medical Imaging, 2021
-- **方向:** 光声成像目标定位
-- **Paper:** https://doi.org/10.1109/TMI.2021.3077187
+**6. Fourier-Net: Fast Image Registration with Band-Limited Deformation**  
+- **会议**：AAAI 2023 · **CCF A 类主会**  
+- **方向**：Fourier / 无监督配准  
+- **核心内容**：学习低维带限 Fourier 形变表示，通过无参数逆变换得到高分辨率位移场。  
+- **资源**：[**PDF 直达**](https://ojs.aaai.org/index.php/AAAI/article/view/25182/24954) · [Code](https://github.com/xi-jia/Fourier-Net)  
 
----
+**7. GradICON: Approximate Diffeomorphisms via Gradient Inverse Consistency**  
+- **会议**：CVPR 2023 · **CCF A 类主会**  
+- **方向**：逆一致性 / 形变正则  
+- **核心内容**：以形变复合映射 Jacobian 的梯度逆一致性提升变形场正则性与稳定性。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2023/papers/Tian_GradICON_Approximate_Diffeomorphisms_via_Gradient_Inverse_Consistency_CVPR_2023_paper.pdf) · [Code](https://github.com/uncbiag/ICON)  
 
-## 2022
+**8. Preserving Tumor Volumes for Unsupervised Medical Image Registration**  
+- **会议**：ICCV 2023 · **CCF A 类主会**  
+- **方向**：肿瘤体积保持 / 无监督  
+- **核心内容**：先估计软肿瘤区域，再约束配准前后的肿瘤体积变化。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/ICCV2023/papers/Dong_Preserving_Tumor_Volumes_for_Unsupervised_Medical_Image_Registration_ICCV_2023_paper.pdf)  
 
-### 8. Which Images To Label for Few-Shot Medical Landmark Detection?
-- **Venue:** CVPR 2022 — CCF A
-- **方向:** 医学关键点 / Landmark 定位 / Few-shot
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2022/html/Quan_Which_Images_To_Label_for_Few-Shot_Medical_Landmark_Detection_CVPR_2022_paper.html
+### 2024
 
-### 9. Check and Link: Pairwise Lesion Correspondence Guides Mammogram Mass Detection
-- **Venue:** ECCV 2022 — CCF B
-- **方向:** 乳腺肿块检测 / 双侧关联
-- **Paper:** https://doi.org/10.1007/978-3-031-19803-8_23
+**9. Correlation-aware Coarse-to-fine MLPs for Deformable Medical Image Registration**  
+- **会议**：CVPR 2024 · **CCF A 类主会**  
+- **方向**：多窗口 MLP / 粗到细  
+- **核心内容**：通过多窗口相关性感知 MLP 和由粗到细策略建模不同尺度的形变。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2024/papers/Meng_Correlation-aware_Coarse-to-fine_MLPs_for_Deformable_Medical_Image_Registration_CVPR_2024_paper.pdf)  
 
-### 10. A Task Decomposing and Cell Comparing Method for Cervical Lesion Cell Detection
-- **Venue:** IEEE Transactions on Medical Imaging, 2022
-- **方向:** 宫颈病变细胞检测
-- **Paper:** https://doi.org/10.1109/TMI.2022.3163171
-
-### 11. Multitask Deep Learning Reconstruction and Localization of Lesions in Limited Angle Diffuse Optical Tomography
-- **Venue:** IEEE Transactions on Medical Imaging, 2022
-- **方向:** 病灶重建 + 定位
-- **Paper:** https://doi.org/10.1109/TMI.2021.3117276
-
-### 12. Object recognition in medical images via anatomy-guided deep learning
-- **Venue:** Medical Image Analysis, 2022
-- **方向:** 解剖先验引导的医学目标识别 / 定位
-- **Paper:** https://doi.org/10.1016/j.media.2022.102527
-
----
-
-## 2023
-
-### 13. GraphSKT: Graph-Guided Structured Knowledge Transfer for Domain Adaptive Lesion Detection
-- **Venue:** IEEE Transactions on Medical Imaging, 2023
-- **方向:** 病灶检测 / 域适应
-- **Paper:** https://doi.org/10.1109/TMI.2022.3212784
-
-### 14. Ipsilateral Lesion Detection Refinement for Tomosynthesis
-- **Venue:** IEEE Transactions on Medical Imaging, 2023
-- **方向:** 数字乳腺断层成像病灶检测
-- **Paper:** https://doi.org/10.1109/TMI.2023.3280135
-
-### 15. SDMT: Spatial Dependence Multi-Task Transformer Network for 3D Knee MRI Segmentation and Landmark Localization
-- **Venue:** IEEE Transactions on Medical Imaging, 2023
-- **方向:** 3D MRI Landmark 定位 + 分割
-- **Paper:** https://doi.org/10.1109/TMI.2023.3247543
-
-### 16. Joint localization and classification of breast masses on ultrasound images using an auxiliary attention-based framework
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** 乳腺超声肿块定位 + 分类
-- **Paper:** https://doi.org/10.1016/j.media.2023.102960
-
-### 17. Devil Is in the Queries: Advancing Mask Transformers for Real-World Medical Image Segmentation and Out-of-Distribution Localization
-- **Venue:** CVPR 2023 — CCF A
-- **方向:** 医学 OOD 病灶定位 / Segmentation
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2023/html/Yuan_Devil_Is_in_the_Queries_Advancing_Mask_Transformers_for_Real-World_CVPR_2023_paper.html
-
-### 18. Attention-Conditioned Augmentations for Self-Supervised Anomaly Detection and Localization
-- **Venue:** AAAI 2023 — CCF A
-- **方向:** 异常检测 / 异常区域定位；包含医学影像实验
-- **Paper:** https://doi.org/10.1609/aaai.v37i12.26720
+**10. Modality-Agnostic Structural Image Representation Learning for Deformable Multi-Modality Medical Image Registration**  
+- **会议**：CVPR 2024 · **CCF A 类主会**  
+- **方向**：跨模态 / 结构表征  
+- **核心内容**：学习跨模态无关的结构表示，改进不同医学成像模态之间的可变形配准。  
+- **资源**：[**PDF 直达**](https://openaccess.thecvf.com/content/CVPR2024/papers/Mok_Modality-Agnostic_Structural_Image_Representation_Learning_for_Deformable_Multi-Modality_Medical_Image_CVPR_2024_paper.pdf)  
 
 ---
 
-## 2024
+## 推荐阅读顺序
 
-### 19. Weakly Supervised Lesion Detection and Diagnosis for Breast Cancers With Partially Annotated Ultrasound Images
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 乳腺超声病灶检测 / 弱监督
-- **Paper:** https://doi.org/10.1109/TMI.2024.3366940
-
-### 20. Landmark Localization From Medical Images With Generative Distribution Prior
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 医学图像 Landmark 定位
-- **Paper:** https://doi.org/10.1109/TMI.2024.3371948
-
-### 21. Score-Based Counterfactual Generation for Interpretable Medical Image Classification and Lesion Localization
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 可解释诊断 + 病灶定位
-- **Paper:** https://doi.org/10.1109/TMI.2024.3375357
-
-### 22. Reduced-Reference Learning for Target Localization in Deep Brain Stimulation
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 深部脑刺激靶点定位
-- **Paper:** https://doi.org/10.1109/TMI.2024.3363425
-
-### 23. RF-ULM: Ultrasound Localization Microscopy Learned From Radio-Frequency Wavefronts
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 超声定位显微成像
-- **Paper:** https://doi.org/10.1109/TMI.2024.3391297
-
-### 24. GravityNet for end-to-end small lesion detection
-- **Venue:** Artificial Intelligence in Medicine, 2024
-- **方向:** 小病灶端到端检测
-- **Paper:** https://doi.org/10.1016/j.artmed.2024.102842
-
-### 25. PatchCL-AE: Anomaly detection for medical images using patch-wise contrastive learning-based auto-encoder
-- **Venue:** Computerized Medical Imaging and Graphics, 2024
-- **方向:** 医学异常检测 / 病灶区域定位
-- **Paper:** https://doi.org/10.1016/j.compmedimag.2024.102366
-
-### 26. Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images
-- **Venue:** CVPR 2024 — CCF A
-- **方向:** 医学异常检测 / 像素级异常定位 / VLM
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2024/html/Huang_Adapting_Visual-Language_Models_for_Generalizable_Anomaly_Detection_in_Medical_Images_CVPR_2024_paper.html
-
----
-
-# 2. 医学图像配准
-
-## 2020
-
-### 1. Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks
-- **Venue:** CVPR 2020 — CCF A
-- **方向:** 可微同胚配准 / CNN
-- **Paper:** https://openaccess.thecvf.com/content_CVPR_2020/html/Mok_Fast_Symmetric_Diffeomorphic_Image_Registration_with_Convolutional_Neural_Networks_CVPR_2020_paper.html
-
-### 2. DeepFLASH: An Efficient Network for Learning-Based Medical Image Registration
-- **Venue:** CVPR 2020 — CCF A
-- **方向:** 高效学习式医学图像配准
-- **Paper:** https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_DeepFLASH_An_Efficient_Network_for_Learning-Based_Medical_Image_Registration_CVPR_2020_paper.pdf
-
-### 3. One-Shot Learning for Deformable Medical Image Registration and Periodic Motion Tracking
-- **Venue:** IEEE Transactions on Medical Imaging, 2020
-- **方向:** 可变形配准 / One-shot / 运动跟踪
-- **Paper:** https://doi.org/10.1109/TMI.2020.2972616
-
-### 4. Deformable Slice-to-Volume Registration for Motion Correction of Fetal Body and Placenta MRI
-- **Venue:** IEEE Transactions on Medical Imaging, 2020
-- **方向:** 胎儿 MRI / Slice-to-volume registration
-- **Paper:** https://doi.org/10.1109/TMI.2020.2974844
-
-### 5. Learning deformable registration of medical images with anatomical constraints
-- **Venue:** Neural Networks, 2020
-- **方向:** 解剖约束可变形配准
-- **Paper:** https://doi.org/10.1016/j.neunet.2020.01.023
-
----
-
-## 2021
-
-### 6. Image registration: Maximum likelihood, minimum entropy and deep learning
-- **Venue:** Medical Image Analysis, 2021
-- **方向:** 深度学习图像配准 / 概率建模
-- **Paper:** https://doi.org/10.1016/j.media.2020.101939
-
-### 7. CycleMorph: Cycle consistent unsupervised deformable image registration
-- **Venue:** Medical Image Analysis, 2021
-- **方向:** 无监督可变形配准 / Cycle consistency
-- **Paper:** https://doi.org/10.1016/j.media.2021.102036
-
-### 8. Difficulty-aware hierarchical convolutional neural networks for deformable registration of brain MR images
-- **Venue:** Medical Image Analysis, 2021
-- **方向:** Brain MRI / 层次式可变形配准
-- **Paper:** https://doi.org/10.1016/j.media.2020.101817
-
-### 9. Weakly-supervised learning of multi-modal features for regularised iterative descent in 3D image registration
-- **Venue:** Medical Image Analysis, 2021
-- **方向:** 多模态 3D 配准 / 弱监督
-- **Paper:** https://doi.org/10.1016/j.media.2020.101822
-
-### 10. Generative Adversarial Registration for Improved Conditional Deformable Templates
-- **Venue:** ICCV 2021 — CCF A
-- **方向:** GAN / 可变形模板配准
-- **Paper:** https://openaccess.thecvf.com/content/ICCV2021/html/Dey_Generative_Adversarial_Registration_for_Improved_Conditional_Deformable_Templates_ICCV_2021_paper.html
-
-### 11. Strain Energy Decay Predicts Elastic Registration Accuracy From Intraoperative Data Constraints
-- **Venue:** IEEE Transactions on Medical Imaging, 2021
-- **方向:** 术中弹性配准 / 配准精度预测
-- **Paper:** https://doi.org/10.1109/TMI.2021.3052523
-
----
-
-## 2022
-
-### 12. Affine Medical Image Registration With Coarse-To-Fine Vision Transformer
-- **Venue:** CVPR 2022 — CCF A
-- **方向:** Transformer / 仿射医学图像配准
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2022/html/Mok_Affine_Medical_Image_Registration_With_Coarse-To-Fine_Vision_Transformer_CVPR_2022_paper.html
-
-### 13. Aladdin: Joint Atlas Building and Diffeomorphic Registration Learning With Pairwise Alignment
-- **Venue:** CVPR 2022 — CCF A
-- **方向:** Atlas building + 可微同胚配准
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2022/html/Ding_Aladdin_Joint_Atlas_Building_and_Diffeomorphic_Registration_Learning_With_Pairwise_CVPR_2022_paper.html
-
-### 14. DiffuseMorph: Unsupervised Deformable Image Registration Using Diffusion Model
-- **Venue:** ECCV 2022 — CCF B
-- **方向:** Diffusion Model / 无监督可变形配准
-- **Paper:** https://www.ecva.net/papers/eccv_2022/papers_ECCV/html/6455_ECCV_2022_paper.php
-
-### 15. TransMorph: Transformer for unsupervised medical image registration
-- **Venue:** Medical Image Analysis, 2022
-- **方向:** Transformer / 无监督可变形配准
-- **Paper:** https://doi.org/10.1016/j.media.2022.102615
-
-### 16. Cross-modal attention for multi-modal image registration
-- **Venue:** Medical Image Analysis, 2022
-- **方向:** Cross-modal Attention / 多模态配准
-- **Paper:** https://doi.org/10.1016/j.media.2022.102612
-
-### 17. Atlas-ISTN: Joint segmentation, registration and atlas construction with image-and-spatial transformer networks
-- **Venue:** Medical Image Analysis, 2022
-- **方向:** 分割 + 配准 + Atlas
-- **Paper:** https://doi.org/10.1016/j.media.2022.102383
-
-### 18. Joint Progressive and Coarse-to-Fine Registration of Brain MRI via Deformation Field Integration and Non-Rigid Feature Fusion
-- **Venue:** IEEE Transactions on Medical Imaging, 2022
-- **方向:** Brain MRI / Coarse-to-fine 非刚性配准
-- **Paper:** https://doi.org/10.1109/TMI.2022.3170879
-
-### 19. SynthMorph: Learning Contrast-Invariant Registration Without Acquired Images
-- **Venue:** IEEE Transactions on Medical Imaging, 2022
-- **方向:** 对比度无关配准 / 合成训练
-- **Paper:** https://doi.org/10.1109/TMI.2021.3116879
-
----
-
-## 2023
-
-### 20. GradICON: Approximate Diffeomorphisms via Gradient Inverse Consistency
-- **Venue:** CVPR 2023 — CCF A
-- **方向:** Diffeomorphic registration / inverse consistency
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2023/html/Tian_GradICON_Approximate_Diffeomorphisms_via_Gradient_Inverse_Consistency_CVPR_2023_paper.html
-
-### 21. Preserving Tumor Volumes for Unsupervised Medical Image Registration
-- **Venue:** ICCV 2023 — CCF A
-- **方向:** 肿瘤体积保持 / 无监督医学图像配准
-- **Paper:** https://openaccess.thecvf.com/content/ICCV2023/html/Dong_Preserving_Tumor_Volumes_for_Unsupervised_Medical_Image_Registration_ICCV_2023_paper.html
-
-### 22. Fourier-Net: Fast Image Registration with Band-Limited Deformation
-- **Venue:** AAAI 2023 — CCF A
-- **方向:** Fourier / 快速可变形配准
-- **Paper:** https://doi.org/10.1609/aaai.v37i1.25182
-
-### 23. Automated Learning for Deformable Medical Image Registration by Jointly Optimizing Network Architectures and Objective Functions
-- **Venue:** IEEE Transactions on Image Processing, 2023
-- **方向:** 自动网络搜索 / 可变形医学图像配准
-- **Paper:** https://doi.org/10.1109/TIP.2023.3307215
-
-### 24. AMNet: Adaptive multi-level network for deformable registration of 3D brain MR images
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** 3D Brain MRI / 多尺度可变形配准
-- **Paper:** https://doi.org/10.1016/j.media.2023.102740
-
-### 25. R2Net: Efficient and flexible diffeomorphic image registration using Lipschitz continuous residual networks
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** Diffeomorphic registration / Residual network
-- **Paper:** https://doi.org/10.1016/j.media.2023.102917
-
-### 26. PC-Reg: A pyramidal prediction–correction approach for large deformation image registration
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** 大形变图像配准 / Prediction-Correction
-- **Paper:** https://doi.org/10.1016/j.media.2023.102978
-
-### 27. A robust and interpretable deep learning framework for multi-modal registration via keypoints
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** 多模态医学图像配准 / Keypoint
-- **Paper:** https://doi.org/10.1016/j.media.2023.102962
-
-### 28. Anatomically constrained and attention-guided deep feature fusion for joint segmentation and deformable medical image registration
-- **Venue:** Medical Image Analysis, 2023
-- **方向:** 解剖约束 / Attention / 联合分割与配准
-- **Paper:** https://doi.org/10.1016/j.media.2023.102811
-
----
-
-## 2024
-
-### 29. Modality-Agnostic Structural Image Representation Learning for Deformable Multi-Modality Medical Image Registration
-- **Venue:** CVPR 2024 — CCF A
-- **方向:** 多模态医学图像配准 / Modality-agnostic representation
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2024/html/Mok_Modality-Agnostic_Structural_Image_Representation_Learning_for_Deformable_Multi-Modality_Medical_Image_CVPR_2024_paper.html
-
-### 30. Correlation-aware Coarse-to-fine MLPs for Deformable Medical Image Registration
-- **Venue:** CVPR 2024 — CCF A
-- **方向:** MLP / Coarse-to-fine 可变形配准
-- **Paper:** https://openaccess.thecvf.com/content/CVPR2024/html/Meng_Correlation-aware_Coarse-to-fine_MLPs_for_Deformable_Medical_Image_Registration_CVPR_2024_paper.html
-
-### 31. Unsupervised Multi-modal Medical Image Registration via Invertible Translation
-- **Venue:** ECCV 2024 — CCF B
-- **方向:** 多模态配准 / Invertible Neural Network
-- **Paper:** https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/4467_ECCV_2024_paper.php
-
-### 32. Adaptive Correspondence Scoring for Unsupervised Medical Image Registration
-- **Venue:** ECCV 2024 — CCF B
-- **方向:** 无监督医学图像配准 / Correspondence scoring
-- **Paper:** https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/5502_ECCV_2024_paper.php
-
-### 33. Recursive Deformable Pyramid Network for Unsupervised Medical Image Registration
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 无监督可变形配准 / Pyramid Network
-- **Paper:** https://doi.org/10.1109/TMI.2024.3362968
-
-### 34. TransMatch: A Transformer-Based Multilevel Dual-Stream Feature Matching Network for Unsupervised Deformable Image Registration
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** Transformer / Dual-stream / 无监督配准
-- **Paper:** https://doi.org/10.1109/TMI.2023.3288136
-
-### 35. GroupMorph: Medical Image Registration via Grouping Network With Contextual Fusion
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** Grouping Network / Contextual fusion
-- **Paper:** https://doi.org/10.1109/TMI.2024.3400603
-
-### 36. Robust Deformable Image Registration Using Cycle-Consistent Implicit Representations
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** Implicit representation / Cycle consistency
-- **Paper:** https://doi.org/10.1109/TMI.2023.3321425
-
-### 37. A Fully Differentiable Framework for 2D/3D Registration and the Projective Spatial Transformers
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** 2D/3D Registration / Projective Spatial Transformer
-- **Paper:** https://doi.org/10.1109/TMI.2023.3299588
-
-### 38. Attention-Aware Non-Rigid Image Registration for Accelerated MR Imaging
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** MRI / 非刚性配准 / Attention
-- **Paper:** https://doi.org/10.1109/TMI.2024.3385024
-
-### 39. Multitask Weakly Supervised Generative Network for MR-US Registration
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** MRI–Ultrasound 多模态配准 / 弱监督
-- **Paper:** https://doi.org/10.1109/TMI.2024.3400899
-
-### 40. The ACROBAT 2022 challenge: Automatic registration of breast cancer tissue
-- **Venue:** Medical Image Analysis, 2024
-- **方向:** 乳腺癌病理组织配准 / Challenge Benchmark
-- **Paper:** https://doi.org/10.1016/j.media.2024.103257
-
-### 41. A Multi-Scale Fusion and Transformer Based Registration Guided Speckle Noise Reduction for OCT Images
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** OCT / Transformer / 配准引导去噪
-- **Paper:** https://doi.org/10.1109/TMI.2023.3309813
-
-### 42. Unsupervised Fusion of Misaligned PAT and MRI Images via Mutually Reinforcing Cross-Modality Image Generation and Registration
-- **Venue:** IEEE Transactions on Medical Imaging, 2024
-- **方向:** PAT–MRI 多模态配准 + 图像融合
-- **Paper:** https://doi.org/10.1109/TMI.2023.3347511
-
----
-
-# 3. 按研究主题快速分类
-
-## 3.1 医学检测 / 定位
-
-### Lesion / Mass Detection
+### 医学半监督/弱监督分割（重点）
 
 ```text
-FocalMix
-Universal Lesion Detection
-Cross-View Mammogram Mass Detection
-Check and Link
-GraphSKT
-Ipsilateral Lesion Detection Refinement
-Weakly Supervised Breast Cancer Lesion Detection
-GravityNet
+BCP (CVPR 2023)          — Mean Teacher + 双向增强
+    ↓
+ABD (CVPR 2024)          — 伪标签置信度 + 困难区域
+    ↓
+ALHVR (ICCV 2025)        — 高价值区域分层学习
+    ↓
+DyCON (CVPR 2025)        — 不确定性一致性 + 对比学习
+    ↓
+AmbiSSL (CVPR 2025)      — 多解伪标签 + latent 分布
+    ↓
+SemiGDA (CVPR 2026)      — 图像/Mask 潜在分布对齐
+    ↓
+WeakMed (CVPR 2026)      — 框标注替代像素级 GT Mask
+    ↓
+SegMoTE (CVPR 2026)      — SAM 的 MoE 轻量适配
 ```
 
-### Landmark / Target Localization
+### 医学三维重建/点云
 
 ```text
-Which Images To Label for Few-Shot Medical Landmark Detection?
-SDMT
-Landmark Localization From Medical Images With Generative Distribution Prior
-Reduced-Reference Learning for Target Localization in Deep Brain Stimulation
-RF-ULM
+SMPL-A (CVPR 2022)       — 点云自编码器 / 器官形变
+    ↓
+CrossSDF (CVPR 2025)     — 2D 截面 → 3D SDF
+    ↓
+Depth Any Endoscopy (CVPR 2026) — 内镜深度估计（上游技术）
 ```
 
-### Anomaly / OOD Localization
+### 医学检测/定位
 
 ```text
-Unsupervised Lesion Detection via Image Restoration
-Devil Is in the Queries
-Attention-Conditioned Augmentations
-PatchCL-AE
-Adapting Visual-Language Models for Generalizable Anomaly Detection in Medical Images
+FocalMix (CVPR 2020)     — 半监督 3D 肺结节检测
+    ↓
+Few-Shot Landmark (CVPR 2022) — 少样本模板选择
+    ↓
+Devil Is in the Queries (CVPR 2023) — 病灶/OOD 定位
+    ↓
+Medical VLM Anomaly Detection (CVPR 2024) — 跨模态异常定位
+```
+
+### 医学图像配准
+
+```text
+Fast Symmetric / DeepFLASH (CVPR 2020) — 可微同胚 / 低维频域
+    ↓
+C2FViT / Aladdin (CVPR 2022)         — ViT 仿射 / Atlas
+    ↓
+GradICON (CVPR 2023)                — 梯度逆一致性
+    ↓
+Fourier-Net (AAAI 2023)             — 带限 Fourier 位移场
+    ↓
+Modality-Agnostic / CorrMLP (CVPR 2024) — 跨模态 / 多尺度
 ```
 
 ---
 
-## 3.2 医学图像配准
+## 从旧版移除的非 A 类作品
 
-### CNN / Classical Deep Registration
+以下只用于解释筛选口径，**不是本版推荐清单**：
 
-```text
-Fast Symmetric Diffeomorphic Registration
-DeepFLASH
-CycleMorph
-Difficulty-aware Hierarchical CNN
-R2Net
-PC-Reg
-Recursive Deformable Pyramid Network
-```
-
-### Transformer / Attention
-
-```text
-Affine Medical Image Registration With Coarse-To-Fine Vision Transformer
-TransMorph
-Cross-modal Attention
-Atlas-ISTN
-TransMatch
-Attention-Aware Non-Rigid Registration
-```
-
-### Diffusion / Generative
-
-```text
-DiffuseMorph
-Generative Adversarial Registration
-Multitask Weakly Supervised Generative Network for MR-US Registration
-```
-
-### Multi-modal Registration
-
-```text
-Weakly-supervised Multi-modal Features for 3D Registration
-Cross-modal Attention for Multi-modal Image Registration
-Robust and Interpretable Keypoint-based Multi-modal Registration
-Modality-Agnostic Structural Image Representation Learning
-Unsupervised Multi-modal Registration via Invertible Translation
-MR-US Registration
-PAT-MRI Registration
-```
-
-### Diffeomorphic Registration
-
-```text
-Fast Symmetric Diffeomorphic Registration
-Aladdin
-GradICON
-R2Net
-```
+| 旧版代表性论文 | 实际出处 | 不保留的原因 |
+|---|---|---|
+| UNet 3+ | ICASSP 2020 | 非 CCF A 会议 |
+| PraNet | MICCAI 2020 | 非所要求的 CCF A 会议 |
+| Medical Transformer / CoTr | MICCAI 2021 | 非所要求的 CCF A 会议 |
+| Swin-Unet | ECCV Workshop 2022 | Workshop；不能视为 CCF A 主会 |
+| UNETR | WACV 2022 | 非 CCF A 会议 |
+| SegMamba / FastSAM3D / Tri-Plane Mamba | MICCAI 2024 | 非所要求的 CCF A 会议 |
+| PX2Tooth | MICCAI 2024 | 非所要求的 CCF A 会议 |
+| Check and Link / DiffuseMorph | ECCV 2022 | CCF B，不符合只要 A 类 |
+| Adaptive Correspondence Scoring / Unsupervised Multi-modal Registration via Invertible Translation | ECCV 2024 | CCF B，不符合只要 A 类 |
+| MedSAM / nnU-Net / TransMorph / MeshDeformNet | 期刊 | 不是会议主会论文 |
+| Real-Time Novel-View Freehand Ultrasound Imaging via Point-Cloud Rendering and Diffusion-Bridge Completion | MIDL 2026 | 不是 CCF A 主会；PMLR 出版不等于 ICML |
 
 ---
 
-# 4. 建议重点阅读的路线
+**统计**：正式清单 34 条主题记录，去重后 **33 篇** CCF A 类主会论文；另列 2 篇严格 A 类、但只作为三维重建上游技术的工作。
 
-## 医学检测 / 定位
-
-```text
-FocalMix (CVPR 2020)
-        ↓
-Universal Lesion Detection (TMI 2021)
-        ↓
-Few-Shot Medical Landmark Detection (CVPR 2022)
-        ↓
-GraphSKT / OOD Localization (TMI/CVPR 2023)
-        ↓
-Weakly-Supervised Lesion Detection
-        +
-Generative Landmark Localization
-        +
-Medical VLM Anomaly Detection (2024)
-```
-
-## 医学图像配准
-
-```text
-CNN-based Registration
-Fast Symmetric Registration / DeepFLASH
-        ↓
-CycleMorph
-        ↓
-Transformer
-TransMorph / Coarse-to-Fine ViT
-        ↓
-Diffusion
-DiffuseMorph
-        ↓
-Diffeomorphic & Inverse Consistency
-GradICON / R2Net
-        ↓
-Multi-modal / Foundation-style Features
-Modality-Agnostic Registration
-INNReg
-AdaCS
-```
-
----
-
-
-
-
+**学术用途提示**：如用于毕业/奖学金/职称认定，仍应按所在单位实际采纳的 CCF 目录版本确认。
